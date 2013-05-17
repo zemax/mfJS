@@ -150,7 +150,7 @@
 		if (Math.abs(this.touch.lastDY) > this.options.minScrollGap) {
 			var t = Math.max(0, Math.min(this.length, Math.round(this.time + this.length * (-10 * this.touch.lastDY / this.options.touchHeight))));
 	        
-	        this.moveToTime(t, false);
+			this.moveToTime(t, false);
 		}
 	};
 })(mf = window.mf || {});
