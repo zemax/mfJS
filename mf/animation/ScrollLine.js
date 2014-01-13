@@ -7,7 +7,7 @@
 	 * @param options :
 	 * - (inherited) length (in milli-seconds)
 	 * - height : height of scroll, default 5000
-	 * - touchEnabled : enable scroll simulation on touch devides : default false
+	 * - touchEnabled : enable scroll simulation on touch devices : default false
 	 * - touchHeight
 	 */
 	function ScrollLine(options) {

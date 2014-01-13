@@ -19,7 +19,7 @@
 		this.phi0 = phi0;
 		this.cosphi0 = Math.cos(this.phi0 * (Math.PI / 180));
 		this.r = (180 / Math.PI) * (this.w / 360) / this.cosphi0;
-	}
+	};
 
 	GallCalculator.prototype.getXY = function(lat, lng) {
 		var x = this.x0 + (lng * (Math.PI / 180)) * this.r * this.cosphi0;

@@ -132,7 +132,7 @@
 			points = points[0];
 		}
 		
-		var output = new Array();			
+		var output = [];
 		for (i = 0;i < points.length;i++) {
 			output.push(new mf.geom.Vector2D(points[i].x, points[i].y));
 		}

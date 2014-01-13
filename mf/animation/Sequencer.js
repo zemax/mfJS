@@ -23,7 +23,7 @@
 	 * - animateIn : function called once when entering the animation timeline
 	 * - animateOut : function called once when leaving the animation timeline
 	 * 
-	 * @returns
+	 * @return
 	 */
 	p.register = function(animation) {
 		animation = $.extend({

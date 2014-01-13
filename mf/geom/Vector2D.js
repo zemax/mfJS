@@ -152,9 +152,9 @@
 	 * 	polyOut			Polygon not containing the first point of the original polygon
 	 */
 	Vector2D.intersectPoly = function(o, v, points) {
-		var polyIn = new Array();
-		var polyOut = new Array();
-		var intersections = new Array();
+		var polyIn = [];
+		var polyOut = [];
+		var intersections = [];
 		
 		var found = 0;
 		for (var i = 0; i < points.length; i++) {
