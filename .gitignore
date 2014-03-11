@@ -1,0 +1,6 @@
+.idea/
+.sass-cache/
+_gsdata_/
+conf/site.conf.php
+admin/
+node_modules/
