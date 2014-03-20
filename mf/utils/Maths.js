@@ -7,7 +7,6 @@
 
 	mf.utils.Maths = Maths;
 
-
 	/**
 	 * Linear easing
 	 *
