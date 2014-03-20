@@ -1,4 +1,5 @@
-(function ( mf, $ ) {
+(function ( exports, $ ) {
+	var mf = exports.mf = exports.mf || {};
 	mf.animation = mf.animation || {};
 
 	/**
@@ -46,8 +47,6 @@
 
 	ScrollLine.prototype = new mf.animation.TimeLine();
 
-	var p = ScrollLine.prototype;
-
 	/**
 	 * Move playhead to time
 	 *
@@ -57,7 +56,7 @@
 	 * - (inherited) easing : easing function : default easeOutQuad
 	 * - moveScrollbar: move the scrollbar to the requested value : default true
 	 */
-	p.moveToTime = function ( t, options ) {
+	ScrollLine.prototype.moveToTime = function ( t, options ) {
 		options = $.extend( {
 			moveScrollbar : true
 		}, options );
@@ -74,7 +73,7 @@
 	 *
 	 * t: time
 	 */
-	p.updateScrollbar = function ( t ) {
+	ScrollLine.prototype.updateScrollbar = function ( t ) {
 		var h = window.innerHeight || document.documentElement.clientHeight;
 		$( window ).scrollTop( Math.ceil( (this.options.height - h) * (t / this.length) ) );
 	};
@@ -83,7 +82,7 @@
 	 * Start the playhead, linear time-based play
 	 * Prevent moving the scrollbar
 	 */
-	p.play = function () {
+	ScrollLine.prototype.play = function () {
 		$( this ).trigger( mf.animation.TimeLine.PLAY );
 
 		this.moveToTime( this.length, {
@@ -96,7 +95,7 @@
 	/**
 	 * React on scroll event
 	 */
-	p.onScroll = function () {
+	ScrollLine.prototype.onScroll = function () {
 		var h = window.innerHeight || document.documentElement.clientHeight;
 		var t = Math.round( this.length * $( window ).scrollTop() / (this.options.height - h) );
 
@@ -112,7 +111,7 @@
 	 *
 	 * Starts the scroll simulation
 	 */
-	p.onTouchStart = function ( e ) {
+	ScrollLine.prototype.onTouchStart = function ( e ) {
 		e.preventDefault();
 		e.stopImmediatePropagation();
 
@@ -125,7 +124,7 @@
 	 *
 	 * Simulate scroll
 	 */
-	p.onTouchMove = function ( e ) {
+	ScrollLine.prototype.onTouchMove = function ( e ) {
 		e.preventDefault();
 		e.stopImmediatePropagation();
 
@@ -146,11 +145,11 @@
 	 *
 	 * Simulate scroll momentum
 	 */
-	p.onTouchEnd = function ( e ) {
+	ScrollLine.prototype.onTouchEnd = function ( e ) {
 		if ( Math.abs( this.touch.lastDY ) > this.options.minScrollGap ) {
 			var t = Math.max( 0, Math.min( this.length, Math.round( this.time + this.length * (-10 * this.touch.lastDY / this.options.touchHeight) ) ) );
 
 			this.moveToTime( t, false );
 		}
 	};
-})( mf = window.mf || {}, jQuery );
+})( this, jQuery );

@@ -1,20 +1,50 @@
-(function ( mf ) {
+(function ( exports ) {
+	var mf = exports.mf = exports.mf || {};
 	mf.utils = mf.utils || {};
+
+	function lpad ( str, size, char ) {
+		if ( typeof char === "undefined" ) {
+			char = "0";
+		}
+
+		while ( str.length < size ) {
+			str = char + str;
+		}
+
+		return str;
+	}
 
 	/**
 	 * Constructor
 	 */
 	function Color ( r, g, b ) {
-		this.r = r;
-		this.g = g;
-		this.b = b;
+		this.r = Math.max( 0, Math.min( 255, Math.round( r ) ) );
+		this.g = Math.max( 0, Math.min( 255, Math.round( g ) ) );
+		this.b = Math.max( 0, Math.min( 255, Math.round( b ) ) );
 	}
 
 	mf.utils.Color = Color;
 
-	var p = Color.prototype;
+	/**
+	 * Return HTML Hex code for color
+	 *
+	 * @returns {string}
+	 */
+	Color.prototype.toHTML = function () {
+		return ('#'
+			+ lpad( this.r.toString( 16 ), 2 )
+			+ lpad( this.g.toString( 16 ), 2 )
+			+ lpad( this.b.toString( 16 ), 2 )
+			);
+	}
 
-	p.getNBTransform = function ( ratio ) {
+	/**
+	 * Desaturate color
+	 *
+	 * @param ratio (0 - 1)
+	 * @returns {Color}
+	 */
+	Color.prototype.desaturate = function ( ratio ) {
 		var rwgt = 0.3086;
 		var gwgt = 0.6094;
 		var bwgt = 0.0820;
@@ -85,4 +115,12 @@
 
 		return (new Color( r, g, b ));
 	};
-})( mf = window.mf || {} );
+
+	/**
+	 * deprecated function name
+	 *
+	 * @type {Function}
+	 */
+	Color.prototype.getNBTransform = Color.prototype.desaturate;
+
+})( this );

@@ -1,4 +1,5 @@
-(function ( mf, $ ) {
+(function ( exports, $ ) {
+	var mf = exports.mf = exports.mf || {};
 	mf.animation = mf.animation || {};
 
 	/**
@@ -10,8 +11,6 @@
 	}
 
 	mf.animation.Sequencer = Sequencer;
-
-	var p = Sequencer.prototype;
 
 	/**
 	 * Register an animation object
@@ -25,7 +24,7 @@
 	 *
 	 * @return
 	 */
-	p.register = function ( animation ) {
+	Sequencer.prototype.register = function ( animation ) {
 		animation = $.extend( {
 			start : this.length,
 			duration : 100,
@@ -45,7 +44,7 @@
 	/**
 	 * Process animations
 	 */
-	p.process = function ( t ) {
+	Sequencer.prototype.process = function ( t ) {
 		var dt, animation;
 
 		// Process Animate Out
@@ -86,4 +85,4 @@
 			}
 		}
 	};
-})( mf = window.mf || {}, jQuery );
+})( this, jQuery );

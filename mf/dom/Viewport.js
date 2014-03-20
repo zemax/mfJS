@@ -1,7 +1,5 @@
-/**
- * Created by Maxime on 20/03/14.
- */
-(function ( mf ) {
+(function ( exports ) {
+	var mf = exports.mf = exports.mf || {};
 	mf.dom = mf.dom || {};
 
 	function Viewport () {
@@ -10,7 +8,12 @@
 
 	mf.dom.Viewport = Viewport;
 
-	// Determine if an element is in the visible viewport
+	/**
+	 * Determine if an element is in the visible viewport
+	 *
+	 * @param element
+	 * @returns {boolean}
+	 */
 	Viewport.isInViewport = function ( element ) {
 		var rect = element.getBoundingClientRect();
 		var html = document.documentElement;
@@ -20,4 +23,4 @@
 			&& (rect.right <= (window.innerWidth || html.clientWidth))
 			);
 	};
-})( mf = window.mf || {} );
+})( this );

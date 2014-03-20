@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>mf Tests Color</title>
+	<link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<script>
+	function test () {
+		var c, d;
+		document.write( "<h2>Color</h2>" );
+		try {
+			c = new mf.utils.Color(
+					Math.floor( 255 * Math.random() ),
+					Math.floor( 255 * Math.random() ),
+					Math.floor( 255 * Math.random() )
+			);
+			document.write( c );
+
+			document.write( '<br>' );
+			document.write( 'RGB : ' + c.r + ', ' + c.g + ', ' + c.b );
+
+			document.write( '<br>' );
+			document.write( 'HEX : ' + c.toHTML() + ' <span style="background: ' + c.toHTML() + '; padding: 0 10px;">&nbsp;</span>' );
+
+			for ( var i = 0; i <= 1; i += 0.3 ) {
+				d = c.desaturate( i );
+				document.write( '<br>' );
+				document.write( 'desaturate ' + i + ' : ' + d.toHTML() + ' <span style="background: ' + d.toHTML() + '; padding: 0 10px;">&nbsp;</span>' );
+			}
+		}
+		catch ( e ) {
+			document.write( e );
+		}
+
+		document.write( "<h2>Color HSB</h2>" );
+		for ( var s = 0; s <= 100; s++ ) {
+			for ( var i = 0; i <= 360; i++ ) {
+				d = mf.utils.Color.hsb( i, s, 100 );
+				document.write( '<span style="background: ' + d.toHTML() + '; padding: 0 1px;"></span>' );
+			}
+			document.write( '<br>' );
+		}
+	}
+</script>
+<script src="../mf/core/Core.js"></script>
+<script src="../mf/utils/Color.js"></script>
+<h1>Post Tests</h1>
+<script>
+	test();
+</script>
+</body>
+</html>

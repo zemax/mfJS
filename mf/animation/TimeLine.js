@@ -1,4 +1,5 @@
-(function ( mf, $ ) {
+(function ( exports, $ ) {
+	var mf = exports.mf = exports.mf || {};
 	mf.animation = mf.animation || {};
 
 	/**
@@ -32,12 +33,10 @@
 	TimeLine.PLAY = "eventPlay";
 	TimeLine.STOP = "eventStop";
 
-	var p = TimeLine.prototype;
-
 	/**
 	 * (private) function used to interpolate time with requestAnimationFrame
 	 */
-	p.ease = function () {
+	TimeLine.prototype.ease = function () {
 		if ( this.easing.on ) {
 			var t = Date.now() - this.easing.startTime;
 			var d = this.easing.duration;
@@ -63,7 +62,7 @@
 	 * - duration in milliseconds : default 1000
 	 * - easing : easing function : default easeOutQuad
 	 */
-	p.moveToTime = function ( t, options ) {
+	TimeLine.prototype.moveToTime = function ( t, options ) {
 		options = $.extend( {
 			duration : Math.min( 1000, Math.abs( t - this.time ) ),
 			easing : mf.utils.Maths.easeOutQuad
@@ -86,7 +85,7 @@
 	 *
 	 * @param t : time
 	 */
-	p.setTime = function ( t ) {
+	TimeLine.prototype.setTime = function ( t ) {
 		if ( t != this.time ) {
 			this.time = t;
 
@@ -97,7 +96,7 @@
 	/**
 	 * Start the playhead, linear time-based play
 	 */
-	p.play = function () {
+	TimeLine.prototype.play = function () {
 		$( this ).trigger( TimeLine.PLAY );
 
 		this.moveToTime( this.length, {
@@ -109,7 +108,7 @@
 	/**
 	 * Stop the playing
 	 */
-	p.stop = function ( t ) {
+	TimeLine.prototype.stop = function ( t ) {
 		if ( typeof t != "undefined" ) {
 			this.setTime( t );
 		}
@@ -118,4 +117,4 @@
 
 		this.easing.on = false;
 	};
-})( mf = window.mf || {}, jQuery );
+})( this, jQuery );

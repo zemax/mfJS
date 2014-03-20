@@ -1,4 +1,5 @@
-(function ( mf ) {
+(function ( exports ) {
+	var mf = exports.mf = exports.mf || {};
 	mf.geom = mf.geom || {};
 	mf.geom.projections = mf.geom.projections || {};
 
@@ -36,4 +37,4 @@
 			lng : lng
 		});
 	};
-})( mf = window.mf || {} );
+})( this );

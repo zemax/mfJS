@@ -1,4 +1,5 @@
-(function ( mf ) {
+(function ( exports ) {
+	var mf = exports.mf = exports.mf || {};
 	mf.utils = mf.utils || {};
 
 	function Maths () {
@@ -166,4 +167,4 @@
 
 		return (radius * j);
 	};
-})( mf = window.mf || {} );
+})( this );

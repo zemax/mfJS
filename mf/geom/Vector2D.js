@@ -1,4 +1,5 @@
-(function ( mf ) {
+(function ( exports ) {
+	var mf = exports.mf = exports.mf || {};
 	mf.geom = mf.geom || {};
 
 	/**
@@ -29,7 +30,7 @@
 	 * @param    v
 	 * @return
 	 */
-	p.substractVector = function ( v ) {
+	Vector2D.prototype.substractVector = function ( v ) {
 		return (new Vector2D( this.x - v.x, this.y - v.y ));
 	};
 
@@ -39,7 +40,7 @@
 	 * @param    s
 	 * @return
 	 */
-	p.multiply = function ( s ) {
+	Vector2D.prototype.multiply = function ( s ) {
 		return (new Vector2D( s * this.x, s * this.y ));
 	};
 
@@ -48,7 +49,7 @@
 	 *
 	 * @return
 	 */
-	p.norm = function () {
+	Vector2D.prototype.norm = function () {
 		return (Math.sqrt( this.norm2() ));
 	};
 
@@ -57,7 +58,7 @@
 	 *
 	 * @return
 	 */
-	p.norm2 = function () {
+	Vector2D.prototype.norm2 = function () {
 		return ((this.x * this.x) + (this.y * this.y));
 	};
 
@@ -67,7 +68,7 @@
 	 * @param    v Vector2D
 	 * @return
 	 */
-	p.scalarProduct = function ( v ) {
+	Vector2D.prototype.scalarProduct = function ( v ) {
 		return (this.x * v.x + this.y * v.y);
 	};
 
@@ -77,7 +78,7 @@
 	 * @param    v
 	 * @return
 	 */
-	p.dotProduct = function ( v ) {
+	Vector2D.prototype.dotProduct = function ( v ) {
 		return (this.x * v.y - this.y * v.x);
 	};
 
@@ -188,4 +189,4 @@
 			intersections : intersections, polyIn : polyIn, polyOut : polyOut
 		});
 	};
-})( mf = window.mf || {} );
+})( this );

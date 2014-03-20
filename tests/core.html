@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>mf Tests Core</title>
+	<link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<script>
+	function test () {
+		document.write( "<h2>delegate</h2>" );
+		try {
+			document.write( delegate );
+		}
+		catch ( e ) {
+			document.write( e );
+		}
+
+		document.write( "<h2>requestAnimationFrame</h2>" );
+		try {
+			document.write( requestAnimationFrame );
+		}
+		catch ( e ) {
+			document.write( e );
+		}
+
+		document.write( "<h2>Date.now</h2>" );
+		try {
+			document.write( Date.now() );
+		}
+		catch ( e ) {
+			document.write( e );
+		}
+	}
+</script>
+<h1>Pre Tests</h1>
+<script>
+	test();
+</script>
+<script src="../mf/core/Core.js"></script>
+<h1>Post Tests</h1>
+<script>
+	test();
+</script>
+</body>
+</html>
